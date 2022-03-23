@@ -2,6 +2,10 @@
   max-width: 960px;
 }
 
+.text-justify {
+  text-align: justify;
+}
+
 /*
    * Custom translucent site header
    */
