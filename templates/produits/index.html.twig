@@ -22,7 +22,7 @@
             <a href="{{ path('app_produits_show', {'id': produit.id}) }}" class="btn btn-outline-primary">
               <i class="fas fa-info-circle"></i>
               Fiche produit</a>
-            <a href="#" class="btn btn-outline-success">
+            <a href="{{ path('cart_add', {'id': produit.id}) }}" class="btn btn-outline-success">
               <i class="fa fa-cart-arrow-down"></i>
               Ajouter au panier</a>
           </div>
