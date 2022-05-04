@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+    <h1 class="text-center">Votre panier</h1>
+    {% if total == 0 %}
+      <div class="lead mt-5">
+        Votre panier est vide !</div>
+    {% else %}
+      {% for produit in products %}
+        <div class="card mt-5">
+          <h5 class="card-header">{{produit.product.name}}</h5>
+          <div class="card-body d-flex justify-content-between">
+            <div class="w-75">
+              <h5 class="card-title">{{produit.product.category}}</h5>
+              <div class="d-flex justify-content-between">
+                <p class="card-text">{{produit.product.description}}</p>
+                <p class="card-text   text-warning fst-italic me-5">
+
+                  {{produit.product.price * produit.quantity }}
+                  € pour
+                  {{produit.quantity}}
+                  exemplaires
+
+                </p>
+
+              </div>
+
+              <a href="{{ path('cart_remove' , {'id': produit.product.id}) }}" class="btn btn-danger">
+                <i class="fa fa-trash"></i>
+                Enlever</a>
+              {# <a href="" class="btn btn-success">
+              <i class="fas fa-credit-card"></i>
+              Payer</a> #}
+            </div>
+
+            <div class="bg-secondary w-25"></div>
+
+          </div>
+        </div>
+      {% endfor %}
+
+      <div class="d-flex justify-content-center mt-4">
+
+        <table class="mt-2">
+          <tr>
+            <td colspan="3" class="text-muted fw-bold ">Total:
+            </td>
+            <td class="text-muted fw-bold ">{{total}}
+              €</td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <a href="" class="btn btn-success mt-2  ">Commander</a>
+      </div>
+    {% endif %}
+
+  </div>
+
+{% endblock %}
