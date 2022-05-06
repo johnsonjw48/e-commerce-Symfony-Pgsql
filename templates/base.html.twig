@@ -30,11 +30,28 @@
 
         <a class="py-2 d-none d-md-inline-block" href="{{ path('app_produits_index') }}">Produits</a>
         <a class="py-2 d-none d-md-inline-block" href="{{ path('app_category_index') }}">Categories</a>
-        <a class="py-2 d-none d-md-inline-block" href="#">Mes commandes</a>
+
+        {% if app.user %}
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('app_account') }}">
+            <i class="fa fa-user-circle fa-2x"></i>
+
+          </a>
+          |
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('app_logout') }}" ">
+            <i class="fa fa-sign-out fa-2x  "></i>
+          </a>
+        {% else %}
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('app_login') }}">
+            <i class="fa fa-sign-in fa-2x"></i>
+
+          </a>
+
+        {% endif %}
         <a class="py-2 d-none d-md-inline-block" href="{{ path('app_cart') }}">
           <i class="fa fa-cart-arrow-down fa-2x"></i>
 
         </a>
+
       </nav>
     </header>
 

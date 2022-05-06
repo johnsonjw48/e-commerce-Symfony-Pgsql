@@ -24,6 +24,12 @@ class Cart
      */
     private $product;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="carts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $person;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
@@ -54,6 +60,18 @@ class Cart
     public function removeProduct(Produits $product): self
     {
         $this->product->removeElement($product);
+
+        return $this;
+    }
+
+    public function getPerson(): ?User
+    {
+        return $this->person;
+    }
+
+    public function setPerson(?User $person): self
+    {
+        $this->person = $person;
 
         return $this;
     }

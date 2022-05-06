@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Produits;
 use App\Form\ProduitsType;
 use App\Repository\ProduitsRepository;
@@ -17,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProduitsController extends AbstractController
 {
     /**
-     * @Route("/", name="app_produits_index", methods={"GET"})
+     * @Route("/", name=" , methods={"GET"})
      */
     public function index(ProduitsRepository $produitsRepository): Response
     {
