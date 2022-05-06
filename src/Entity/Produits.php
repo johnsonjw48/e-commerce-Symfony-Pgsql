@@ -50,6 +50,11 @@ class Produits
      */
     private $carts;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $images;
+
     public function __construct()
     {
         $this->carts = new ArrayCollection();
@@ -143,6 +148,18 @@ class Produits
         if ($this->carts->removeElement($cart)) {
             $cart->removeProduct($this);
         }
+
+        return $this;
+    }
+
+    public function getImages(): ?string
+    {
+        return $this->images;
+    }
+
+    public function setImages(?string $images): self
+    {
+        $this->images = $images;
 
         return $this;
     }
