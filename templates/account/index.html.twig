@@ -6,9 +6,18 @@
 
   <div class="container mt-5">
 
-    - Mes commandes
-    <br>
-    - Adresse
-  </div>
+    <h1>Mon compte</h1>
 
-{% endblock %}
+    <a href="{{ path('app_address') }}" class="btn btn-secondary mt-5">
+      <i class="fa fa-home me-2"></i>
+      Gérer mes adresses
+
+    </a>
+
+    <a href="#" class="btn btn-secondary mt-5">
+      <i class="fa fa-file me-2"></i>
+      Gérer mes commandes
+
+    </a>
+
+  {% endblock %}
