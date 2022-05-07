@@ -18,14 +18,24 @@
               <h5 class="card-title">{{produit.product.category}}</h5>
               <div class="d-flex justify-content-between">
                 <p class="card-text">{{produit.product.description}}</p>
-                <p class="card-text   text-warning fst-italic me-5">
+                <div class="card-text   text-muted fst-italic me-5">
 
                   {{produit.product.price * produit.quantity }}
                   € pour
-                  {{produit.quantity}}
+                  <span class="text-info fw-bold">{{produit.quantity}}</span>
                   exemplaires
 
-                </p>
+                  <div class=" d-flex justify-content-center text-dark">
+
+                    <a href="{{ path('cart_add', {'id': produit.product.id}) }}">
+                      <i class="fa fa-plus-circle me-4 mt-4 mb-4"></i>
+                    </a>
+
+                    <a href="{{ path('cart_dec' , {'id': produit.product.id})  }}">
+                      <i class="fa fa-minus-circle mt-4 mb-4"></i>
+                    </a>
+                  </div>
+                </div>
 
               </div>
 
@@ -38,7 +48,7 @@
             </div>
 
             <div class="w-25">
-              <img src="/images/{{produit.product.images}}" alt="{{produit.product.name}}" class="img-fluid">
+              <a href="{{ path('app_produits_show', {'id': produit.product.id}) }}"><img src="/images/{{produit.product.images}}" alt="{{produit.product.name}}" class="img-fluid"></a>
             </div>
 
           </div>
@@ -59,7 +69,7 @@
       </div>
 
       <div class="d-flex justify-content-center">
-        <a href="" class="btn btn-success mt-2  ">Commander</a>
+        <a href="{{ path('cart_remove_all') }}" class="btn btn-danger mt-2  ">Vider le panier</a>
       </div>
     {% endif %}
 
