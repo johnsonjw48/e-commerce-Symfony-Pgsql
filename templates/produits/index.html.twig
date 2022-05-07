@@ -5,13 +5,33 @@
 {% block body %}
 
   <div class="container">
-    <h1 class="text-center mt-5 mb-5">Découvrez nos produit</h1>
 
     <div class="row">
       <div class="col-md-3">
-        <div class="h3 fst-italic">Filtrer</div>
+        <h2 class="mt-5 mb-5 text-secondary">Filtrer</h2>
+
+        {{form_start(form)}}
+        <div>
+          <div class=" mb-3 lead fst-italic">Par mots clés</div>
+          <div>
+            {{form_widget(form.qName)}}
+          </div>
+
+        </div>
+
+        <div class="mt-3">
+          <div class="mt-5 mb-3 lead fst-italic">Par catégories</div>
+          <div>
+            {{form_widget(form.qCategory)}}
+          </div>
+        </div>
+
+        {{form_end(form)}}
+
       </div>
+
       <div class="col-md-9">
+        <h2 class="text-center mt-5 mb-5 text-secondary">Découvrez nos produit</h2>
 
         <div class="row">
 

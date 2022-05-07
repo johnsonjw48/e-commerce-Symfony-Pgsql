@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Produits;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
@@ -43,6 +44,31 @@ class ProduitsRepository extends ServiceEntityRepository
         if ($flush) {
             $this->_em->flush();
         }
+    }
+
+    /**
+     * @return Produits[]
+     */
+    public function getSearchQuery(SearchData $search)
+    {
+        $query = $this->createQueryBuilder('p')
+                ->select('c', 'p')
+                ->join('p.category', 'c');
+
+             
+        if (!empty($search->qName)) {
+            $query=$query
+            ->andWhere('p.name LIKE :qName')
+            ->setParameter('qName', "%{$search->qName}%");
+        }
+
+        if (!empty($search->qCategory)) {
+            $query=$query
+            ->andWhere('c.id IN (:qCategory)')
+            ->setParameter('qCategory', $search->qCategory);
+        }
+    
+        return $query->getQuery()->getResult();
     }
 
     // /**
