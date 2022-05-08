@@ -38,6 +38,7 @@ class AddressController extends AbstractController
             $address->setPerson($this->getUser());
             $addressRepository->add($address);
 
+         
             return $this->redirectToRoute('app_address');
         }
 

@@ -192,4 +192,10 @@ class Address
 
         return $this;
     }
+    
+    public function __toString()
+    {
+        return $this->name. '[br]' .$this->address. '[br]'.$this->city.' - '.$this->country;
+    }
+
 }

@@ -46,7 +46,7 @@ class CartController extends AbstractController
             'total' => $total
         ]);
     }
-
+ 
      /**
      * @Route("/panier/add/{id}", name="cart_add")
      */
