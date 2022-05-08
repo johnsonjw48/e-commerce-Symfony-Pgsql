@@ -50,7 +50,7 @@ class CartController extends AbstractController
      /**
      * @Route("/panier/add/{id}", name="cart_add")
      */
-    public function add(Request $request,$id, SessionInterface $session)
+    public function add($id, SessionInterface $session)
     {
 
         $panier = $session->get("panier", []);

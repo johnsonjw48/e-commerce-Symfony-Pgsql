@@ -25,16 +25,38 @@
                   <span class="text-info fw-bold">{{produit.quantity}}</span>
                   exemplaires
 
-                  <div class=" d-flex justify-content-center text-dark">
+                  {% if produit.quantity >= produit.product.stock %}
 
-                    <a href="{{ path('cart_add', {'id': produit.product.id}) }}">
+                    <div class=" d-flex justify-content-center text-dark">
+
                       <i class="fa fa-plus-circle me-4 mt-4 mb-4"></i>
-                    </a>
 
-                    <a href="{{ path('cart_dec' , {'id': produit.product.id})  }}">
-                      <i class="fa fa-minus-circle mt-4 mb-4"></i>
-                    </a>
-                  </div>
+                      <a href="{{ path('cart_dec' , {'id': produit.product.id})  }}">
+                        <i class="fa fa-minus-circle mt-4 mb-4"></i>
+                      </a>
+                    </div>
+
+                    <div class="text-danger text-center ">
+                      <small>
+                        <i class="fa fa-bell me-1"></i>
+                        Que
+                        {{produit.product.stock}}
+                        en stock</small>
+                    </div>
+                  {% else %}
+
+                    <div class=" d-flex justify-content-center text-dark">
+
+                      <a href="{{ path('cart_add', {'id': produit.product.id}) }}">
+                        <i class="fa fa-plus-circle me-4 mt-4 mb-4"></i>
+                      </a>
+
+                      <a href="{{ path('cart_dec' , {'id': produit.product.id})  }}">
+                        <i class="fa fa-minus-circle mt-4 mb-4"></i>
+                      </a>
+                    </div>
+                  {% endif %}
+
                 </div>
 
               </div>

@@ -47,9 +47,15 @@
                   <p class="fw-bold">{{produit.price | number_format(2, '.', ',')}}
                     €</p>
 
-                  <a href="{{ path('cart_add', {'id': produit.id}) }}" class="btn btn-success">
-                    <i class="fa fa-shopping-cart"></i>
-                    Ajouter</a>
+                  {% if produit.stock == 0 %}
+                    <a href="" class="btn btn-outline-danger disabled">
+                      <i class="fa fa-shopping-cart"></i>
+                      En rupture</a>
+                  {% else %}
+                    <a href="{{ path('cart_add', {'id': produit.id}) }}" class="btn btn-success">
+                      <i class="fa fa-shopping-cart"></i>
+                      Ajouter</a>
+                  {% endif %}
                 </div>
               </div>
             </div>

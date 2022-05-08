@@ -33,7 +33,7 @@ class OrderType extends AbstractType
                 
             ])
             ->add('submit', SubmitType::class, [
-                'label'=> 'Valider ma commande',
+                'label'=> 'Payer ma commande',
                 'attr'=>[
                     'class'=> 'btn btn-success btn-block mt-4 col-12'
                 ]

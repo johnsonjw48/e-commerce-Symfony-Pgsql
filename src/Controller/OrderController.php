@@ -62,6 +62,7 @@ class OrderController extends AbstractController
    
         return $this->render('order/index.html.twig', [
                 'form'=>$form->createView(),
+                'total'=>$total,
                 'cart'=>$cart
         ]);
     }
@@ -69,9 +70,9 @@ class OrderController extends AbstractController
     /**
      * @Route("order/recap", name="order_recap", methods={"POST"})
      */
-    public function add(OrderRepository $orderRepository,OrderDetailsRepository $orderDetailsRepository,Request $request, SessionInterface $session, ProduitsRepository $produitsRepository): Response
+    public function add(OrderRepository $orderRepository, OrderDetailsRepository $orderDetailsRepository,Request $request, SessionInterface $session, ProduitsRepository $produitsRepository): Response
     {
-
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(OrderType::class, null, [
             'user' => $this->getUser()
         ]);
@@ -136,7 +137,7 @@ class OrderController extends AbstractController
     $order->setCarrierName($carriers->getName());
     $order->setCarrierPrice($carriers->getPrice());
     $order->setDelivery($delivery);
-    $order->setIsPaid(0);
+    $order->setIsPaid(1);
 
     $orderRepository->add($order);
 
@@ -147,21 +148,33 @@ class OrderController extends AbstractController
         $orderDetails->setCommand($order);
         $orderDetails->setProduct($prod['product']->getName());
         $orderDetails->setQuantity($prod['quantity']);
+
+        $item = $produitsRepository->find($prod['product']->getId());
+
+        $newStock = $item->getStock() - $prod['quantity'];
+
+        $item->setStock($newStock);
+
+
+
         $orderDetails->setPrice($prod['product']->getPrice());
         $orderDetails->setTotal($prod['product']->getPrice() * $prod['quantity']);
         $orderDetailsRepository->add($orderDetails);
+        $produitsRepository->add($item);
     }
+
+    $session->remove('panier');
    
-    return $this->render('order/add.html.twig', [
-        'cart'=>$cart,
-        'total'=>$total,
-        'carrier'=>$form->get('carriers')->getData(),
-        'delivery'=>$delivery
-]);
-}
+        return $this->render('order/add.html.twig', [
+            'cart'=>$cart,
+            'total'=>$total,
+            'carrier'=>$form->get('carriers')->getData(),
+            'delivery'=>$delivery
+            ]);
+        }
 
- return $this->redirectToRoute('app_cart');
-
-  
+        return $this->redirectToRoute('app_cart');
     }
+
+
 }

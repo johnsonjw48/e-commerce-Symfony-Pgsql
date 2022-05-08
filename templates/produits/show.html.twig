@@ -41,26 +41,36 @@
             </span>
 
             <span class="text-dark h6  mt-5 d-flex justify-content-around mb-3">
-              Quantité :
+              Paiment en :
               <select class="form-select w-25" aria-label="Default select example">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="1">une fois</option>
+                <option value="2">3x</option>
+                <option value="3">4x</option>
               </select>
             </span>
-
-            <a href="{{ path('cart_add', {'id': produit.id}) }}" class="btn btn-outline-success">
-              <i class="fa fa-cart-arrow-down"></i>
-              Ajouter au panier</a>
+            {% if produit.stock == 0 %}
+              <a href="{{ path('cart_add', {'id': produit.id}) }}" class="btn btn-outline-success disabled">
+                <i class="fa fa-cart-arrow-down"></i>
+                Ajouter au panier</a>
+            {% else %}
+              <a href="{{ path('cart_add', {'id': produit.id}) }}" class="btn btn-outline-success">
+                <i class="fa fa-cart-arrow-down"></i>
+                Ajouter au panier</a>
+            {% endif %}
 
           </div>
 
         </div>
         <p class="card-text mb-5 mt-4">
-          <small class=" text-success fst-italic fw-bold mt-5">
-            Il reste
-            {{produit.stock}}
-            en stock</small>
+          {% if produit.stock == 0 %}
+            <small class=" text-danger fst-italic fw-bold mt-5">
+              En rupture de stock en stock</small>
+          {% else %}
+            <small class=" text-success fst-italic fw-bold mt-5">
+              Il reste
+              {{produit.stock}}
+              en stock</small>
+          {% endif %}
         </p>
 
         <div class="d-flex justify-content-center">

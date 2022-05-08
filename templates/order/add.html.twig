@@ -5,7 +5,7 @@
 {% block body %}
 
   <div class="container">
-    <h2 class="mt-5">Récapitulatif de la commande</h2>
+    <h2 class="mt-5">Merci pour votre commande</h2>
 
     <hr>
 
@@ -86,9 +86,11 @@
           EUR
         </div>
 
-        <div class="d-grid gap-2 mt-3">
-          <a href="#" class="btn btn-success  mt-4">Payer ma commande
-          </a>
+        <div class="mt-5 d-flex justify-content-center">
+          <a href="#" class="btn  btn-info mt-5 me-5">
+            <i class="fa fa-shopping-cart me-2"></i>Mes commandes</a>
+          <a href="{{ path('app_produits_index') }}" class="btn  btn-info mt-5">
+            <i class="fa fa-arrow-left me-2"></i>Retour aux produits</a>
         </div>
 
       </div>
