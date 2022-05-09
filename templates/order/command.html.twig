@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes commandes{% endblock %}
+
+{% block body %}
+
+  <div class="container ">
+    <h2 class=' mt-5 mb-5'>Historiques de mes commandes</h2>
+    {% for order in app.user.orders %}
+
+      <div class="card text-center mb-5 w-75">
+        <div class="card-header ">
+          <span class='text-success lead fw-bold'>
+            {{order.getTotal() / 100}}
+            EUR</span>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Numéro de commande:
+            {{order.id}}</h5>
+          <p class="card-text text-warning fst-italic">Status: En cours de préparation</p>
+          <a href="{{ path('account_commands_details', {'id': order.id}) }}" class="btn btn-info">
+            <i class="fa fa-info-circle me-2"></i>
+            Détails de la commande</a>
+        </div>
+        <div class="card-footer text-muted">
+          Passée le
+          {{order.createdAt | date('d-m-Y')}}
+        </div>
+      </div>
+
+    {% endfor %}
+  </div>
+
+{% endblock %}

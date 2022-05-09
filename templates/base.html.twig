@@ -49,6 +49,9 @@
 
         {% endif %}
         <a class="py-2 d-none d-md-inline-block" href="{{ path('app_cart') }}">
+          <span class="text-danger fw-bold">
+            {{app.session.get('panier') | length}}
+          </span>
           <i class="fa fa-cart-arrow-down fa-2x"></i>
 
         </a>

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail de ma commande{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+    <h2 class="mt-5">Détails de la commande
+      {{order[0].command.id}}</h2>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-5 ">
+
+        <div class="fw-bold mt-4">Options de livraison
+          <i class="fa fa-truck ms-2"></i>
+        </div>
+        <hr>
+
+        <div class="form-check">
+          <span class='lead'>{{order[0].command.carrierName}}</span>
+
+          <br>
+          {{order[0].command.carrierPrice}}
+          EUR
+        </div>
+
+        <hr>
+        <div class="fw-bold mt-4">Adresse de livraison
+          <i class="fa fa-home ms-2"></i>
+        </div>
+        <hr>
+
+        <div class="form-check">
+          {{order[0].command.delivery | raw}}
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+
+      <div class="col-md-6">
+        <h6 class="mb-4  text-info text-center">Votre commande</h6>
+        {% for product in order %}
+
+          <div class="row">
+
+            <div class="col-6 my-auto">
+              <span class="text-uppercase">{{product.product}}</span>
+              <br/>
+
+              <small class="fw-bold">x
+                {{product.quantity}}</small>
+            </div>
+
+            <div class="col-3 fw-bold my-auto text-muted">
+              {{product.total }}
+              EUR
+            </div>
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+  {% endblock %}

@@ -20,11 +20,14 @@
                 <p class="card-text">{{produit.product.description}}</p>
                 <div class="card-text   text-muted fst-italic me-5">
 
-                  {{produit.product.price * produit.quantity }}
-                  € pour
-                  <span class="text-info fw-bold">{{produit.quantity}}</span>
-                  exemplaires
+                  <p class="card-text text-center  text-warning fst-italic me-5">
 
+                    {{produit.product.price * produit.quantity }}
+                    € pour
+                    {{produit.quantity}}
+                    exemplaires
+
+                  </p>
                   {% if produit.quantity >= produit.product.stock %}
 
                     <div class=" d-flex justify-content-center text-dark">

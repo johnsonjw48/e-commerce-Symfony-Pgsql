@@ -3,33 +3,27 @@
 {% block title %}Category index{% endblock %}
 
 {% block body %}
-  <h1>Category index</h1>
+  <div class="container">
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>actions</th>
-      </tr>
-    </thead>
-    <tbody>
+    <h2 class="text-center mt-5 mb-5 text-secondary">Explorez nos produits selon leur catégories</h2>
+
+    <div class="row">
+
       {% for category in categories %}
-        <tr>
-          <td>{{ category.id }}</td>
-          <td>{{ category.name }}</td>
-          <td>{{ category.description }}</td>
-          <td>
-            <a href="{{ path('app_category_show', {'id': category.id}) }}">show</a>
-          </td>
-        </tr>
-      {% else %}
-        <tr>
-          <td colspan="4">no records found</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
 
+        <div class="col-md-6 mb-5 card ">
+          <div class="product-item text-center">
+            <a href="{{ path('app_category_show', {'id': category.id}) }}"><img src="/images/image.jpg" alt="{{category.name}}" class="img-fluid"></a>
+            <h5>{{category.name}}</h5>
+
+            <p class="mb-5">{{category.description}}</p>
+
+          </div>
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
 {% endblock %}
