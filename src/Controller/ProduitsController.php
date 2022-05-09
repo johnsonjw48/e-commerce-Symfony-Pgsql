@@ -7,11 +7,13 @@ use App\Entity\Produits;
 use App\Data\SearchData;
 use App\Form\SearchType;
 use App\Repository\ProduitsRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface; // Nous appelons le bundle KNP Paginator
 
 /**
  * @Route("/produits")

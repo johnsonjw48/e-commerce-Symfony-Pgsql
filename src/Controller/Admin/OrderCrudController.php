@@ -30,7 +30,7 @@ class OrderCrudController extends AbstractCrudController
             EmailField::new('person.email', 'Email'),
             MoneyField::new('total')->setCurrency('EUR'),
             BooleanField::new('isPaid' , 'Payée ?'),
-            TextField::new('status')
+            TextField::new('status', 'status')
         ];
     }
   
