@@ -148,6 +148,7 @@ class OrderController extends AbstractController
     $order->setCarrierPrice($carriers->getPrice());
     $order->setDelivery($delivery);
     $order->setIsPaid(1);
+    $order->setStatus("En cours de préparation");
 
     $em->persist($order);
 

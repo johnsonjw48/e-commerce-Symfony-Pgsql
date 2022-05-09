@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class OrderCrudController extends AbstractCrudController
 {
@@ -19,11 +20,7 @@ class OrderCrudController extends AbstractCrudController
     }
 
 
-    public function configureActions(Actions $actions): Actions
-    {
-        return $actions
-            ->add('index', 'detail');
-    }
+
    
     public function configureFields(string $pageName): iterable
     {
@@ -32,7 +29,8 @@ class OrderCrudController extends AbstractCrudController
             DateTimeField::new('createdAt', 'Passé le'),
             EmailField::new('person.email', 'Email'),
             MoneyField::new('total')->setCurrency('EUR'),
-            BooleanField::new('isPaid' , 'Payée ?')
+            BooleanField::new('isPaid' , 'Payée ?'),
+            TextField::new('status')
         ];
     }
   

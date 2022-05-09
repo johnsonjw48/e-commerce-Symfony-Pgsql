@@ -17,7 +17,8 @@
         <div class="card-body">
           <h5 class="card-title">Numéro de commande:
             {{order.id}}</h5>
-          <p class="card-text text-warning fst-italic">Status: En cours de préparation</p>
+          <p class="card-text text-warning fst-italic">Status:
+            {{order.status}}</p>
           <a href="{{ path('account_commands_details', {'id': order.id}) }}" class="btn btn-info">
             <i class="fa fa-info-circle me-2"></i>
             Détails de la commande</a>
